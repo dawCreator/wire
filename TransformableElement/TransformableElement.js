@@ -5,14 +5,14 @@ export default class TransformableElement extends WireElement {
     var value = parseFloat(getComputedStyle(this).getPropertyValue(`--${id}`)), 
         valueNeedsUpdate = false
     const UPDATE_VALUE = function() {
-      const TRANSFORMED_EVENT = new CustomEvent('transformed')
-      TRANSFORMED_EVENT.id = id
-      TRANSFORMED_EVENT.oldValue = parseFloat(getComputedStyle(this).getPropertyValue(`--${id}`))
-      TRANSFORMED_EVENT.newValue = value
+      const TRANSFORM_EVENT = new CustomEvent('transformed')
+      TRANSFORM_EVENT.id = id
+      TRANSFORM_EVENT.oldValue = parseFloat(getComputedStyle(this).getPropertyValue(`--${id}`))
+      TRANSFORM_EVENT.newValue = value
 
       this.style.setProperty(`--${id}`, value)
 
-      this.dispatchEvent(TRANSFORMED_EVENT)
+      this.dispatchEvent(TRANSFORM_EVENT)
 
       valueNeedsUpdate = false
     }.bind(this)
