@@ -1,0 +1,7 @@
+.transformable {
+  --x: 0;
+  --y: 0;
+  --scale: 1;
+  translate: calc(var(--x, 0)*1px) calc(var(--y, 0)*1px);
+  scale: var(--scale, 1);
+}

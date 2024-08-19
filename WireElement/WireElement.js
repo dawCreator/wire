@@ -1,7 +1,7 @@
 export default class WireElement extends HTMLElement {
   constructor() {
     super()
-    setTimeout(this.init.bind(this))
+    setTimeout(this.init?.bind(this))
   } 
   connectedCallback() {
     const CONNECTED_EVENT = new CustomEvent('appended')

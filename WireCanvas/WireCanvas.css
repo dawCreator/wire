@@ -1,29 +1,27 @@
 wire-canvas {
-  --scale: 1;
-  --x: 0;
-  --y: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(197, 149, 149);
   width: 100%;
   height: 100%;
-  translate: calc(var(--x, 0)*1px) calc(var(--y, 0)*1px);
-  scale: var(--scale, 1);
   > canvas {
     position: absolute;
-    --SIZE: calc(100% / var(--scale, 1));
-    background-color: inherit;
-    width: var(--SIZE);
-    height: var(--SIZE);
+    width: 100%;
+    height: 100%;
     translate: calc(-1px*var(--x, 0)/var(--scale, 1)) calc(-1px*var(--y, 0)/var(--scale, 1));
+    scale: calc(1/var(--scale, 1));
+    background: var(--background);
+    background-size: calc(var(--scale, 1)*1px);
+    background-position: calc(50% + var(--x, 0)*1px) calc(50% + var(--y, 0)*1px);
   }
   > test {
     position: relative;
     display: block;
-    background-color: red;
-    height: calc(sqrt(50*50*2)*1px);
-    aspect-ratio: 1;
-    rotate: 45deg;
+    background-color: rgb(165, 119, 119);
+    --SIZE: calc(sqrt(2)*1px);
+    min-height: var(--SIZE);
+    min-width: var(--SIZE);
+    left: 1px;
+    /* rotate: 45deg; */
   }
 }

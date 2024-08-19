@@ -9,11 +9,12 @@ class WireCanvas extends TransformableElement {
     this.#CVS.width = WIDTH * devicePixelRatio
     this.#CVS.height = HEIGHT * devicePixelRatio
 
+    console.log(WIDTH)
     const SCALE = devicePixelRatio * this.scale
     this.#CTX.scale(SCALE, SCALE)
 
-    this.#CTX.translate(WIDTH/2, HEIGHT/2)
-    
+    this.#CTX.translate((WIDTH/2+this.x)/this.scale, (HEIGHT/2+this.y)/this.scale)
+    console.log(this.#CTX.getTransform())
     this.draw()
   }.bind(this)
   #ON_TRANSFORM = function(event) {
@@ -41,7 +42,7 @@ class WireCanvas extends TransformableElement {
     this.#CTX = this.#CVS.getContext('2d')
     this.append(this.#CVS)
 
-    this.addEventListener('resize', 'appended', this.#ON_RESIZE)
+    addEventListener('resize', this.#ON_RESIZE)
     this.#ON_RESIZE()
 
     this.append(document.createElement('test'))
@@ -63,7 +64,7 @@ class WireCanvas extends TransformableElement {
     this.#CTX.clearRect(LOCAL_START.x, LOCAL_START.y, WIDTH, HEIGHT)
   }
   draw() {
-    this.#CTX.fillRect(-50, -50, 100, 100)
+    this.#CTX.fillRect(-1, -1, 2, 2)
   }
 }
 

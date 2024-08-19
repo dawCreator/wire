@@ -29,6 +29,7 @@ export default class TransformableElement extends WireElement {
   constructor() {
     super()
 
+    this.classList.add('transformable')
     for (let id of this.#TRANSFORM_FIELD_IDS) this.#initTransformField(id)
   }
 }
