@@ -6,18 +6,16 @@ html, body, main {
 #workspace2D {
   --background: url('../rsrc/gridCell2D.svg')
 }
-
-body > test {
-  --x: -26px;
-  --y: 1px;
-  width: 10px;
-  height: 10px;
-  display: block;
-  background: red;
-  left: 50vw;
-  top: 50vh;
-  translate: -50% -50%;
-  transform: translate(var(--x), var(--y));
-  z-index: 1;
+ui {
+  margin: 20px;
   position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  & * {
+    pointer-events: all;
+  }
 }

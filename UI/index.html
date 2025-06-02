@@ -18,21 +18,23 @@
     <link rel="stylesheet" href="./Cursor/Cursor.css">
     <link rel="stylesheet" href="./Canvas2D/Canvas2D.css">
     <link rel="stylesheet" href="./ElectricComponent/Components/Resistor/Resistor.css">
+    <link rel="stylesheet" href="./Button/Button.css">
   <!-- JS -->
     <script src="Cursor/Cursor.js" type="module"></script>
     <script src="Canvas2D/Canvas2D.js" type="module"></script>
     <script src="ElectricComponent/Components/Resistor/Resistor.js" type="module"></script>
+    <script src="Button/Button.js" type="module"></script>
   </head>
   <body>
-    <test>
-      
-    </test>
     <main>
         <canvas-2d id='workspace2D' style='--scale: 100'>
           <test></test>
           <resistor-component></resistor-component>
           <wire-cursor></wire-cursor>
         </canvas-2d>
+        <ui>
+          <wire-button id="activeComponent" style='--size: 40px;' switch></wire-button>
+        </ui>
     </main>
 	<script src="index.js"></script>
   </body>

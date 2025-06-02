@@ -30,7 +30,6 @@ WIRE_CANVAS.addEventListener('pointermove', event => {
   CURSOR.x = LOCAL_POSITION.x
   CURSOR.y = LOCAL_POSITION.y
 })
-
 WIRE_CANVAS.addEventListener('pointerdown', event => {
   const CHOSEN_COMPONENT = 'resistor-component',
         NEW_COMPONENT = document.createElement(CHOSEN_COMPONENT)
@@ -46,4 +45,12 @@ WIRE_CANVAS.addEventListener('pointerdown', event => {
     WIRE_CANVAS.append(NEW_COMPONENT)
 
   }, {once: true})
+})
+
+const ACTIVE_COMPONENT_BUTTON = document.querySelector('wire-button#activeComponent')
+ACTIVE_COMPONENT_BUTTON.addEventListener('on', function(event) {
+
+})
+ACTIVE_COMPONENT_BUTTON.addEventListener('off', function(event) {
+  
 })
