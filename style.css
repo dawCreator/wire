@@ -1,7 +1,0 @@
-html, body, main {
-  margin: 0;
-  height: 100%;
-}
-#workspace2D {
-  --background: url('../rsrc/gridCell2D.svg')
-}

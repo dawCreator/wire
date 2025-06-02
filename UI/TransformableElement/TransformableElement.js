@@ -1,6 +1,7 @@
-import WireElement from '../WireElement/WireElement.js'
+import BaseElement from '../BaseElement/BaseElement.js'
 
-export default class TransformableElement extends WireElement {
+export default class TransformableElement extends BaseElement {
+  #TRANSFORM_FIELD_IDS = ['x', 'y', 'scale']
   #initTransformField = function(id) {
     var value = parseFloat(getComputedStyle(this).getPropertyValue(`--${id}`)), 
         valueNeedsUpdate = false
@@ -25,10 +26,7 @@ export default class TransformableElement extends WireElement {
       }
     })
   }
-  #TRANSFORM_FIELD_IDS = ['x', 'y', 'scale']
-  constructor() {
-    super()
-
+  init() {
     this.classList.add('transformable')
     for (let id of this.#TRANSFORM_FIELD_IDS) this.#initTransformField(id)
   }

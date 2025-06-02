@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Cache -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+  <!-- Title & Icon -->
+    <title>wire</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./TransformableElement/TransformableElement.css">
+    <link rel="stylesheet" href="./Cursor/Cursor.css">
+    <link rel="stylesheet" href="./Canvas2D/Canvas2D.css">
+    <link rel="stylesheet" href="./ElectricComponent/Components/Resistor/Resistor.css">
+  <!-- JS -->
+    <script src="Cursor/Cursor.js" type="module"></script>
+    <script src="Canvas2D/Canvas2D.js" type="module"></script>
+    <script src="ElectricComponent/Components/Resistor/Resistor.js" type="module"></script>
+  </head>
+  <body>
+    <test>
+      
+    </test>
+    <main>
+        <canvas-2d id='workspace2D' style='--scale: 100'>
+          <test></test>
+          <resistor-component></resistor-component>
+          <wire-cursor></wire-cursor>
+        </canvas-2d>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>

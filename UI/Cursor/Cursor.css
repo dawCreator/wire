@@ -1,0 +1,9 @@
+wire-cursor {
+  --scale: .4 !important;
+  width: 1px;
+  aspect-ratio: 1;
+  background-color: rgb(255, 0, 0);
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+}

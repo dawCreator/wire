@@ -1,4 +1,4 @@
-wire-canvas {
+canvas-2d {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,9 +19,9 @@ wire-canvas {
     display: block;
     background-color: rgb(165, 119, 119);
     --SIZE: calc(sqrt(2)*1px);
-    min-height: var(--SIZE);
-    min-width: var(--SIZE);
-    left: 1px;
+    min-height: 2px;
+    min-width: 2px;
+    left: 0px;
     /* rotate: 45deg; */
   }
 }

@@ -1,0 +1,23 @@
+html, body, main {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+#workspace2D {
+  --background: url('../rsrc/gridCell2D.svg')
+}
+
+body > test {
+  --x: -26px;
+  --y: 1px;
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: red;
+  left: 50vw;
+  top: 50vh;
+  translate: -50% -50%;
+  transform: translate(var(--x), var(--y));
+  z-index: 1;
+  position: absolute;
+}

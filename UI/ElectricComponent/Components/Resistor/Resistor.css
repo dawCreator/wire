@@ -1,0 +1,9 @@
+resistor-component {
+  position: absolute;
+  background: url('../../../rsrc/Resistor.svg');
+  width: 1px;
+  height: 1px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

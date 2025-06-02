@@ -1,8 +1,13 @@
-export default class WireElement extends HTMLElement {
+export default class BaseElement extends HTMLElement {
+  #init() {
+    this.init?.bind(this)()
+    const INIT_DONE_EVENT = new Event("initialized")
+    this.dispatchEvent(INIT_DONE_EVENT)
+  }
   constructor() {
     super()
-    setTimeout(this.init?.bind(this))
-  } 
+    setTimeout(this.#init.bind(this))
+  }
   connectedCallback() {
     const CONNECTED_EVENT = new CustomEvent('appended')
     this.dispatchEvent(CONNECTED_EVENT)
