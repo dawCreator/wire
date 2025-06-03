@@ -1,6 +1,6 @@
 import TransformableElement from '../TransformableElement/TransformableElement.js';
 
-class Button extends TransformableElement {
+export default class Button extends TransformableElement {
 /*
   BUTTON STATE:
   sends CustomEvent on state change
@@ -24,8 +24,9 @@ class Button extends TransformableElement {
   }
   init() {
     super.init()
+
     this.addEventListener('pointerdown', function(down) {
-      if (this.isSwitch) this.isOn = !this.isOn
+      if (!this.isSwitch) this.isOn = !this.isOn
     }.bind(this))
     this.addEventListener('pointerup', function(up) {
       this.isOn = !this.isOn

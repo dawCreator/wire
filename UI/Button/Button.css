@@ -1,8 +1,8 @@
 wire-button {
-  --size: 19px;
+  --SIZE: 18px;
   display: block;
-  width: var(--size, 18px);
-  height: var(--size, 18px);
+  width: var(--SIZE, 18px);
+  height: var(--SIZE, 18px);
   background: #ddd;
   border-radius: 2px;
   outline: 1px grey solid;

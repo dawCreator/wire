@@ -19,11 +19,13 @@
     <link rel="stylesheet" href="./Canvas2D/Canvas2D.css">
     <link rel="stylesheet" href="./ElectricComponent/Components/Resistor/Resistor.css">
     <link rel="stylesheet" href="./Button/Button.css">
+    <link rel="stylesheet" href="./RadialMenu/RadialMenu.css">
   <!-- JS -->
     <script src="Cursor/Cursor.js" type="module"></script>
     <script src="Canvas2D/Canvas2D.js" type="module"></script>
     <script src="ElectricComponent/Components/Resistor/Resistor.js" type="module"></script>
     <script src="Button/Button.js" type="module"></script>
+    <script src="RadialMenu/RadialMenu.js" type="module"></script>
   </head>
   <body>
     <main>
@@ -34,6 +36,7 @@
         </canvas-2d>
         <ui>
           <wire-button id="activeComponent" style='--size: 40px;' switch></wire-button>
+          <radial-menu id='componentMenu'></radial-menu>
         </ui>
     </main>
 	<script src="index.js"></script>

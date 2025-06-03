@@ -14,22 +14,18 @@ WIRE_CANVAS.addEventListener('wheel', function(wheel) {
           DY = OLD_LOCAL.y - NEW_LOCAL.y
     this.x -= DX * SCALE
     this.y -= DY * SCALE
-    const NEW_NEW_LOCAL = this.toLocal(100, 100)
   } else {
   // Scroll
     const DX = -wheel.deltaX,
           DY = -wheel.deltaY
     this.x += DX
     this.y += DY
+    
+    CURSOR.update(wheel)
   }
 }.bind(WIRE_CANVAS), {passive: false})
-
 const CURSOR = document.querySelector('wire-cursor')
-WIRE_CANVAS.addEventListener('pointermove', event => {
-  const LOCAL_POSITION = WIRE_CANVAS.toLocal(event.clientX, event.clientY)
-  CURSOR.x = LOCAL_POSITION.x
-  CURSOR.y = LOCAL_POSITION.y
-})
+WIRE_CANVAS.addEventListener('pointermove', move => CURSOR.update(move))
 WIRE_CANVAS.addEventListener('pointerdown', event => {
   const CHOSEN_COMPONENT = 'resistor-component',
         NEW_COMPONENT = document.createElement(CHOSEN_COMPONENT)
@@ -52,5 +48,5 @@ ACTIVE_COMPONENT_BUTTON.addEventListener('on', function(event) {
 
 })
 ACTIVE_COMPONENT_BUTTON.addEventListener('off', function(event) {
-  
+
 })
