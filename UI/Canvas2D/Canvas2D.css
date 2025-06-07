@@ -13,15 +13,6 @@ canvas-2d {
     background: var(--background);
     background-size: calc(var(--scale, 1)*1px);
     background-position: calc(50% + var(--x, 0)*1px) calc(50% + var(--y, 0)*1px);
-  }
-  > test {
-    position: relative;
-    display: block;
-    background-color: rgb(165, 119, 119);
-    --SIZE: calc(sqrt(2)*1px);
-    min-height: 2px;
-    min-width: 2px;
-    left: 0px;
-    /* rotate: 45deg; */
+    pointer-events: none;
   }
 }

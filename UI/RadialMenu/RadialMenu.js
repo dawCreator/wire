@@ -2,7 +2,12 @@ import TransformableElement from '../TransformableElement/TransformableElement.j
 import Button from '../Button/Button.js'
 
 class RadialMenu extends TransformableElement {
-
+  hide() {
+    this.removeAttribute('visible')
+  }
+  show() {
+    this.setAttribute('visible', null)
+  }
   init() {
     super.init()
 

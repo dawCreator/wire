@@ -19,4 +19,10 @@ export default class BaseElement extends HTMLElement {
     for (let type of TYPES) super.addEventListener(type, CALLBACK, OPTIONS)
     return CALLBACK
   }
+  removeEventListener(...args) {
+    const CALLBACK = args.find(arg => typeof arg == 'function'),
+          TYPES = args.filter(arg => typeof arg == 'string'),
+          OPTIONS = args.find(arg => typeof arg == 'object')
+    for (let type of TYPES) super.removeEventListener(type, CALLBACK, OPTIONS)
+  }
 }

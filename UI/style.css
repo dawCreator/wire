@@ -3,7 +3,7 @@ html, body, main {
   height: 100%;
   overflow: hidden;
 }
-#workspace2D {
+#workspace2d {
   --background: url('../rsrc/gridCell2D.svg')
 }
 ui {

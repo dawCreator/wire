@@ -1,9 +1,11 @@
 wire-cursor {
-  --scale: .4 !important;
+  --scale: .33 !important;
   width: 1px;
   aspect-ratio: 1;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 184, 92);
   display: block;
   position: absolute;
   border-radius: 50%;
+  transition: translate .15s ease-in-out;
+  pointer-events: none;
 }

@@ -1,3 +1,5 @@
+import Wire from './Drawable/Drawables/Wire.js'
+
 addEventListener('wheel', (wheel) => wheel.preventDefault(), {passive: false})
 
 const WIRE_CANVAS = document.querySelector('canvas-2d')
@@ -26,27 +28,39 @@ WIRE_CANVAS.addEventListener('wheel', function(wheel) {
 }.bind(WIRE_CANVAS), {passive: false})
 const CURSOR = document.querySelector('wire-cursor')
 WIRE_CANVAS.addEventListener('pointermove', move => CURSOR.update(move))
-WIRE_CANVAS.addEventListener('pointerdown', event => {
-  const CHOSEN_COMPONENT = 'resistor-component',
-        NEW_COMPONENT = document.createElement(CHOSEN_COMPONENT)
-  NEW_COMPONENT.addEventListener('initialized', () => {
-    NEW_COMPONENT.start = event
-    const ON_MOVE = event => {
-      NEW_COMPONENT.end = event
-    }
-    addEventListener('pointermove', ON_MOVE)
-    addEventListener('pointerup', event => {
-      removeEventListener('pointermove', ON_MOVE)
-    }, {once: true})
-    WIRE_CANVAS.append(NEW_COMPONENT)
+WIRE_CANVAS.addEventListener('pointerdown', down => new Wire(down))
+// WIRE_CANVAS.addEventListener('pointerdown', event => {
+//   const CHOSEN_COMPONENT = 'resistor-component',
+//         NEW_COMPONENT = document.createElement(CHOSEN_COMPONENT)
+//   NEW_COMPONENT.addEventListener('initialized', () => {
+//     NEW_COMPONENT.position = event
+//     const ON_MOVE = event => {
+//       NEW_COMPONENT.direction = event
+//     }
+//     addEventListener('pointermove', ON_MOVE)
+//     addEventListener('pointerup', event => {
+//       removeEventListener('pointermove', ON_MOVE)
+//     }, {once: true})
+//     WIRE_CANVAS.append(NEW_COMPONENT)
 
-  }, {once: true})
-})
+//   }, {once: true})
+// })
 
-const ACTIVE_COMPONENT_BUTTON = document.querySelector('wire-button#activeComponent')
-ACTIVE_COMPONENT_BUTTON.addEventListener('on', function(event) {
+const ACTIVE_COMPONENT_BUTTON = document.querySelector('#activeComponent'),
+      COMPONENT_MENU = document.querySelector('#componentMenu')
+ACTIVE_COMPONENT_BUTTON.addEventListener('on', () => COMPONENT_MENU.show())
+ACTIVE_COMPONENT_BUTTON.addEventListener('off', () => COMPONENT_MENU.hide())
 
-})
-ACTIVE_COMPONENT_BUTTON.addEventListener('off', function(event) {
-
+// GLOBAL KEY COMMANDS
+addEventListener('keydown', keydown => {
+  const KEY = keydown.key
+  switch (KEY) {
+    case 'Backspace':
+      for (let wire of Wire.selected) {
+        wire.remove()
+      }
+      WIRE_CANVAS.needsUpdate = true
+    default: 
+      console.log(KEY)
+  }
 })

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./TransformableElement/TransformableElement.css">
     <link rel="stylesheet" href="./Cursor/Cursor.css">
     <link rel="stylesheet" href="./Canvas2D/Canvas2D.css">
+    <link rel="stylesheet" href="./ElectricComponent/ElectricComponent.css">
     <link rel="stylesheet" href="./ElectricComponent/Components/Resistor/Resistor.css">
     <link rel="stylesheet" href="./Button/Button.css">
     <link rel="stylesheet" href="./RadialMenu/RadialMenu.css">
@@ -29,9 +30,7 @@
   </head>
   <body>
     <main>
-        <canvas-2d id='workspace2D' style='--scale: 100'>
-          <test></test>
-          <resistor-component></resistor-component>
+        <canvas-2d id='workspace2d' style='--scale: 100'>
           <wire-cursor></wire-cursor>
         </canvas-2d>
         <ui>
@@ -39,6 +38,6 @@
           <radial-menu id='componentMenu'></radial-menu>
         </ui>
     </main>
-	<script src="index.js"></script>
+	<script src="index.js" type='module'></script>
   </body>
 </html>
