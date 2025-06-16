@@ -28,7 +28,7 @@ WIRE_CANVAS.addEventListener('wheel', function(wheel) {
 }.bind(WIRE_CANVAS), {passive: false})
 const CURSOR = document.querySelector('wire-cursor')
 WIRE_CANVAS.addEventListener('pointermove', move => CURSOR.update(move))
-WIRE_CANVAS.addEventListener('pointerdown', down => new Wire(down))
+WIRE_CANVAS.addEventListener('pointerdown', down => Wire.createFromEvent(down))
 // WIRE_CANVAS.addEventListener('pointerdown', event => {
 //   const CHOSEN_COMPONENT = 'resistor-component',
 //         NEW_COMPONENT = document.createElement(CHOSEN_COMPONENT)
