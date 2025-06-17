@@ -38,4 +38,8 @@ export default class Direction {
   static isDiagonal(direction) {
     return 0 < direction % (Math.PI/2)
   }
+  static opposing(direction) {
+    const OPPOSING_ANGLE = direction + Math.PI
+    return Direction.fromAngle(OPPOSING_ANGLE)
+  }
 }

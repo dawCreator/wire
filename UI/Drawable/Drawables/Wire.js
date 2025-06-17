@@ -35,7 +35,9 @@ export default class Wire extends Drawable {
     context.lineWidth = Wire.LINE_WIDTH
     context.lineCap = 'round'
     context.strokeStyle = '#666'
+    let i = 0
     for (let wire of Wire.visible) {
+      console.log(`${i++}:\t${wire.start?.x},${wire.start?.y}:${wire.end?.x},${wire.end?.y}`)
       wire.draw(context)
     }
     context.stroke()
@@ -66,11 +68,11 @@ export default class Wire extends Drawable {
       const EXISTING_WIRE = NODE.connections[0]
       EXISTING_WIRE.handleDown(event)
     } else {
+    // Split Wires Clicked On
       const INTERSECTING_WIRES = Wire.findIntersecting(POSITION)
       for (let intersectingWire of INTERSECTING_WIRES) intersectingWire.split(POSITION)
-
+    // Create New Wire
       const NEW_WIRE = new Wire()
-      Wire.s.push(NEW_WIRE)
       NEW_WIRE.handleDown(event)
     }
   }
@@ -82,11 +84,13 @@ export default class Wire extends Drawable {
     return this.#points
   }
   set points(points) {
-    this.startNode?.disconnect(this)
-    this.endNode?.disconnect(this)
+    const OLD_END_NODE = this.endNode,
+          OLD_START_NODE = this.startNode
     this.#points = []
     this.#boundingClientRect = {x: Infinity, y: Infinity, X: -Infinity, Y: -Infinity}
     for (let point of points) this.addPoint(point)
+    if (OLD_END_NODE != this.endNode) OLD_END_NODE?.disconnect(this)
+    if (OLD_START_NODE != this.startNode) OLD_START_NODE?.disconnect(this)
   }
   #reverse() {
     this.#points.reverse()
@@ -106,14 +110,16 @@ export default class Wire extends Drawable {
   }.bind(this)
   addPoint = function(point) {
     this.endNode?.disconnect(this)
-    const POINT_INDEX = this.#points.findIndex(p => point.equals(p)),
+    const POINTS = this.#points,
+          POINT_INDEX = POINTS.findIndex(p => point.equals(p)),
           POINT_ALREADY_EXISTS = POINT_INDEX != -1
     if (POINT_ALREADY_EXISTS) {
     // Remove All Points Until This Point & Update Bounds
-      this.#points.splice(POINT_INDEX)
+      const NOT_LAST_POINT = POINT_INDEX < POINTS.length
+      if (NOT_LAST_POINT) this.points = POINTS.slice(0, POINT_INDEX + 1)
     } else {
     // Append New Point And Update Bounds
-      this.#points.push(point)
+      POINTS.push(point)
       this.#updateBoundingClientRect(point)
     }
     new Node(point, this)
@@ -151,12 +157,14 @@ export default class Wire extends Drawable {
   }
   split(position) {
     const SPLIT_INDEX = this.#points.findIndex(p => p.equals(position)),
-          SPLIT_VALID = SPLIT_INDEX > -1 && SPLIT_INDEX < this.#points.length
+          SPLIT_VALID = SPLIT_INDEX > 0 && SPLIT_INDEX < this.#points.length - 1
     if (SPLIT_VALID) {
+      console.log(`SPLITTING WIRE ${this.start.x},${this.start.y}:${this.end.x},${this.end.y} at ${position.x},${position.y}`)
+      console.log(SPLIT_INDEX, this.points)
       const POINTS_BEFORE_SPLIT = this.#points.slice(0, SPLIT_INDEX+1),
             POINTS_AFTER_SPLIT = this.#points.slice(SPLIT_INDEX)
-      this.points = POINTS_BEFORE_SPLIT
       new Wire(POINTS_AFTER_SPLIT)
+      this.points = POINTS_BEFORE_SPLIT
     }
   }
   constructor(points = []) {
@@ -194,22 +202,14 @@ export default class Wire extends Drawable {
     let lastPoint = this.end || this.start
     if (!END_POINT.equals(lastPoint)) {
     // New End-Point
-      let direction,
-          pointIndex,
-          pointExists
+      let direction, lastDirection
     // Add New Points
       do {
-        direction = Direction.fromTwoPoints(lastPoint, END_POINT)
+        direction = Direction.fromTwoPoints(lastPoint, CURSOR)
+        if (Direction.opposing(direction) == lastDirection) break
+        lastDirection = direction
         lastPoint = lastPoint.stepInDirectionFor(direction)
-        pointIndex = this.#points.findIndex(point => lastPoint.equals(point))
-        pointExists = 0 <= pointIndex
-        if (pointExists) {
-        // Delete All Points To Already Existing Point
-          const POINTS = this.#points.slice(0, pointIndex + 1)
-          this.points = POINTS
-        } else {
-          this.addPoint(lastPoint)
-        }
+        this.addPoint(lastPoint)
       } while (!END_POINT.equals(lastPoint))
     }
   }.bind(this)
